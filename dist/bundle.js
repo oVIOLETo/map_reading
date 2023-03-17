@@ -22125,7 +22125,7 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 							NodeType: "Brain",
 							name: "HTML",
 							url: "https://www.notion.so/violet-note/cytoscape-455b15dc7bf34624b1ec8b5184c776df?pvs=4",
-							Maintopic: "Programing",
+							Maintopic: "Programming",
 							shared_name: "HTML",
 						},
 						position: { x: 4491.9853515625, y: 4520.1904296875 },
