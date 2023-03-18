@@ -11073,7 +11073,7 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 									"taxi-turn-min-distance": 10,
 									"taxi-direction": "auto",
 									"edge-distances": "intersection",
-									"curve-style": "haystack",
+									"curve-style": "bezier",
 									"haystack-radius": 0,
 									"arrow-scale": 1,
 									"loop-direction": "-45deg",
@@ -22049,7 +22049,7 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 									c = function (e) {
 										var a = e.data(),
 											t = [];
-										i(t, a.name), i(t, a.Maintopic), e.data("words", t);
+										i(t, a.name), i(t, a.Maintopic1), e.data("words", t);
 									},
 									o = function (e, a) {
 										return 0 === a.indexOf(e)
@@ -22110,25 +22110,60 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 			W = t(126),
 			j = t.n(W),
 			O =
-				'\ncore {\n\tactive-bg-color: #fff;\n\tactive-bg-opacity: 0.333;\n}\n\nedge {\n\tcurve-style: haystack;\n\thaystack-radius: 0;\n\topacity: 0.333;\n\twidth: 2;\n\tz-index: 0;\n\toverlay-opacity: 0;\n  events: no;\n}\n\nnode {\n\twidth: 40;\n\theight: 40;\n\tfont-size: 12;\n\tfont-weight: bold;\n\tmin-zoomed-font-size: 4;\n\tlabel: data(name);\n\ttext-wrap: wrap;\n\ttext-max-width: 50;\n\ttext-valign: center;\n\ttext-halign: center;\n\ttext-events: yes;\n\tcolor: #000;\n\ttext-outline-width: 1;\n\ttext-outline-color: #fff;\n\ttext-outline-opacity: 1;\n\toverlay-color: #fff;\n}\n\nedge[interaction = "cc"] {\n\tline-color: #f7f7f7;\n\topacity: 0.666;\n\tz-index: 9;\n\twidth: 4;\n}\n\nnode[NodeType = "Brain"],\nnode[NodeType = "BrainType"] {\n\tbackground-color: #f7f7f7;\n\ttext-outline-color: #f7f7f7;\n}\n\nedge[interaction = "cw"] {\n\tline-color: white;\n}\n\nedge[interaction = "cr"] {\n\tline-color: #DE3128;\n}\n\nnode.highlighted {\n\tmin-zoomed-font-size: 0;\n  z-index: 9999;\n}\n\nedge.highlighted {\n\topacity: 0.8;\n\twidth: 4;\n\tz-index: 9999;\n}\n\n.faded {\n  events: no;\n}\n\nnode.faded {\n  opacity: 0.08;\n}\n\nedge.faded {\n  opacity: 0.06;\n}\n\n.hidden {\n\tdisplay: none;\n}\n\n',
+				'\ncore {\n\tactive-bg-color: #fff;\n\tactive-bg-opacity: 0.333;\n}\n\nedge {\n\tcurve-style: haystack;\n\thaystack-radius: 0;\n\topacity: 0.333;\n\twidth: 2;\n\tz-index: 0;\n\toverlay-opacity: 0;\n  events: no;\n}\n\nnode {\n\twidth: 40;\n\theight: 40;\n\tfont-size: 12;\n\tfont-weight: bold;\n\tmin-zoomed-font-size: 4;\n\tlabel: data(name);\n\ttext-wrap: wrap;\n\ttext-max-width: 50;\n\ttext-valign: center;\n\ttext-halign: center;\n\ttext-events: yes;\n\tcolor: #000;\n\ttext-outline-width: 1;\n\ttext-outline-color: #fff;\n\ttext-outline-opacity: 1;\n\toverlay-color: #fff;\n}\n\nedge[interaction = "cc"] {\n\tline-color: #f7f7f7;\n\topacity: 0.666;\n\tz-index: 9;\n\twidth: 4;\n}\n\nnode[NodeType = "FIR"]{\n\tbackground-color: white;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "FIR"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "SEC"] {\n\tbackground-color: red;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "SEC"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cw"] {\n\tline-color: white;\n}\n\nnode[NodeType = "THI"] {\n\tbackground-color: Orange;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "THI"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cr"] {\n\tline-color: #DE3128;\n}\n\nnode[NodeType = "FOU"] {\n\tbackground-color: yellow;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "FOU"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cw"] {\n\tline-color: white;\n}\n\nnode[NodeType = "FIF"] {\n\tbackground-color: #65FF25;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "FIF"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cr"] {\n\tline-color: #DE3128;\n}\n\nnode[NodeType = "SIX"] {\n\tbackground-color: #197434;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "SIX"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cw"] {\n\tline-color: white;\n}\n\nnode[NodeType = "SEV"] {\n\tbackground-color: #60DAFF;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "SEV"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cr"] {\n\tline-color: #DE3128;\n}\n\nnode[NodeType = "EIG"] {\n\tbackground-color: #277BFF;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "EIG"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cw"] {\n\tline-color: white;\n}\n\nnode[NodeType = "NIN"] {\n\tbackground-color: #8631FE;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "NIN"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cr"] {\n\tline-color: #DE3128;\n}\n\nnode[NodeType = "Cider"] {\n\tbackground-color: #A4EB34;\n\ttext-outline-color: #A4EB34;\n}\n\nnode.highlighted {\n\tmin-zoomed-font-size: 0;\n  z-index: 9999;\n}\n\nedge.highlighted {\n\topacity: 0.8;\n\twidth: 4;\n\tz-index: 9999;\n}\n\n.faded {\n  events: no;\n}\n\nnode.faded {\n  opacity: 0.08;\n}\n\nedge.faded {\n  opacity: 0.06;\n}\n\n.hidden {\n\tdisplay: none;\n}\n\n',
 			H = {
 				nodes: [
 					{
 						data: {
+							id: "2",
+							Strength: 1,
+							selected: !1,
+							cytoscape_alias_list: ["JavaScript"],
+							canonicalName: "JavaScript",
+							Quality: 10,
+							SUID: 2,
+							NodeType: "SEC",
+							name: "JavaScript",
+							url: "https://google.com",
+							Maintopic1: "Programming",
+							shared_name: "JavaScript",
+						},
+						position: { x: 4391.9853515625, y: 4320.1904296875 },
+						selected: !1,
+					},
+					{
+						data: {
 							id: "1",
-							Strength: 5,
+							Strength: 7,
 							selected: !1,
 							cytoscape_alias_list: ["HTML"],
 							canonicalName: "HTML",
-							Quality: 90,
+							Quality: 990,
 							SUID: 1,
-							NodeType: "Brain",
+							NodeType: "FIR",
 							name: "HTML",
 							url: "https://www.notion.so/violet-note/cytoscape-455b15dc7bf34624b1ec8b5184c776df?pvs=4",
-							Maintopic: "Programming",
+							Maintopic1: "Programming",
 							shared_name: "HTML",
 						},
 						position: { x: 4491.9853515625, y: 4520.1904296875 },
+						selected: !1,
+					},
+				],
+				edges: [
+					{
+						data: {
+							id: "3",
+							source: "1",
+							target: "2",
+							selected: !1,
+							canonicalName: "HTML (cc) j",
+							SUID: 1763,
+							name: "HTML (cc) j",
+							interaction: "cc",
+							shared_interaction: "cc",
+							shared_name: "HTML (cc) j",
+						},
 						selected: !1,
 					},
 				],
@@ -22329,14 +22364,11 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 							value: function () {
 								var e = this.props.node.data(),
 									a = e.name,
-									t =
-										e.NodeTypeFormatted +
-										(e.Type ? " (".concat(e.Type, ")") : ""),
 									i = e.url,
-									c = e.Maintopic;
+									c = e.Maintopic1;
 								return g("div", { class: "node-info" }, [
 									g("div", { class: "node-info-name" }, a),
-									g("div", { class: "node-info-Maintopic" }, c),
+									g("div", { class: "node-info-Maintopic1" }, c),
 									g("div", { class: "node-info-more" }, [
 										g(
 											"a",

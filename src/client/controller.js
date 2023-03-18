@@ -246,7 +246,7 @@ class Controller {
 			addWords(wordList, data.NodeTypeFormatted);
 			addWords(wordList, data.Type);
 			addWords(wordList, data.url);
-			addWords(wordList, data.Maintopic);
+			addWords(wordList, data.Maintopic1);
 
 			node.data("words", wordList);
 		};
