@@ -22049,7 +22049,10 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 									c = function (e) {
 										var a = e.data(),
 											t = [];
-										i(t, a.name), i(t, a.Maintopic1), e.data("words", t);
+										i(t, a.name),
+											i(t, a.Maintopic1),
+											i(t, a.Maintopic2),
+											e.data("words", t);
 									},
 									o = function (e, a) {
 										return 0 === a.indexOf(e)
@@ -22144,6 +22147,7 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 							name: "HTML",
 							url: "https://www.notion.so/violet-note/cytoscape-455b15dc7bf34624b1ec8b5184c776df?pvs=4",
 							Maintopic1: "Programming",
+							Maintopic2: "hacking",
 							shared_name: "HTML",
 						},
 						position: { x: 4491.9853515625, y: 4520.1904296875 },
@@ -22365,10 +22369,12 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 								var e = this.props.node.data(),
 									a = e.name,
 									i = e.url,
-									c = e.Maintopic1;
+									b = e.Maintopic1;
+								c = e.Maintopic2;
 								return g("div", { class: "node-info" }, [
 									g("div", { class: "node-info-name" }, a),
-									g("div", { class: "node-info-Maintopic1" }, c),
+									g("div", { class: "node-info-Maintopic1" }, b),
+									g("div", { class: "node-info-Maintopic2" }, c),
 									g("div", { class: "node-info-more" }, [
 										g(
 											"a",
