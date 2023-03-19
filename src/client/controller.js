@@ -243,6 +243,12 @@ class Controller {
 			const wordList = [];
 
 			addWords(wordList, data.name);
+<<<<<<< HEAD
+=======
+			addWords(wordList, data.NodeTypeFormatted);
+			addWords(wordList, data.Type);
+			addWords(wordList, data.url);
+>>>>>>> 0cc40929d735e6a121e2ada7ef13f58809723016
 			addWords(wordList, data.Maintopic1);
 
 			node.data("words", wordList);
