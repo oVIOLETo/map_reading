@@ -1,3 +1,6 @@
+/**
+ * ! 이 코드가 가장 중요한 파일
+ */
 !(function (e) {
 	var a = {};
 	function t(n) {
@@ -3815,11 +3818,9 @@
 			].forEach(function (e) {
 				F(Tt, e);
 			});
-			/*!
-Embeddable Minimum Strictly-Compliant Promises/A+ 1.1.1 Thenable
-Copyright (c) 2013-2014 Ralf S. Engelschall (http://engelschall.com)
-Licensed under The MIT License (http://opensource.org/licenses/MIT)
-*/
+			/**
+			 * ! Embeddable Minimum Strictly-Compliant Promises/A+ 1.1.1 Thenable Copyright (c) 2013-2014 Ralf S. Engelschall (http://engelschall.com) Licensed under The MIT License (http://opensource.org/licenses/MIT)
+			 */
 			var Ut = function e(a) {
 				if (!(this instanceof e)) return new e(a);
 				(this.id = "Thenable/1.0.7"),
@@ -8627,7 +8628,7 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 					return e.remove();
 				},
 			};
-			/*! Bezier curve function generator. Copyright Gaetan Renaudeau. MIT License: http://en.wikipedia.org/wiki/MIT_License */ function ni(
+			function ni(
 				e,
 				a,
 				t,
@@ -8724,7 +8725,7 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 					b
 				);
 			}
-			/*! Runge-Kutta spring physics function generator. Adapted from Framer.js, copyright Koen Bok. MIT License: http://en.wikipedia.org/wiki/MIT_License */ var ri =
+			var ri =
 					(function () {
 						function e(e) {
 							return -e.tension * e.x - e.friction * e.v;
@@ -22854,11 +22855,10 @@ Licensed under The MIT License (http://opensource.org/licenses/MIT)
 	},
 	90: function (e, a, t) {
 		var n;
-		/*!
-  Copyright (c) 2017 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/ !(function () {
+		/**
+		 * !  Copyright (c) 2017 Jed Watson. Licensed under the MIT License (MIT), seehttp://jedwatson.github.io/classnames
+		*/
+		!(function () {
 			"use strict";
 			var t = {}.hasOwnProperty;
 			function r() {
