@@ -8628,12 +8628,7 @@
 					return e.remove();
 				},
 			};
-			function ni(
-				e,
-				a,
-				t,
-				n
-			) {
+			function ni(e, a, t, n) {
 				var r = 4,
 					i = 0.001,
 					c = 1e-7,
@@ -8725,56 +8720,55 @@
 					b
 				);
 			}
-			var ri =
-					(function () {
-						function e(e) {
-							return -e.tension * e.x - e.friction * e.v;
-						}
-						function a(a, t, n) {
-							var r = {
-								x: a.x + n.dx * t,
-								v: a.v + n.dv * t,
-								tension: a.tension,
-								friction: a.friction,
-							};
-							return { dx: r.v, dv: e(r) };
-						}
-						function t(t, n) {
-							var r = { dx: t.v, dv: e(t) },
-								i = a(t, 0.5 * n, r),
-								c = a(t, 0.5 * n, i),
-								o = a(t, n, c),
-								s = (1 / 6) * (r.dx + 2 * (i.dx + c.dx) + o.dx),
-								l = (1 / 6) * (r.dv + 2 * (i.dv + c.dv) + o.dv);
-							return (t.x = t.x + s * n), (t.v = t.v + l * n), t;
-						}
-						return function e(a, n, r) {
-							var i,
-								c,
-								o,
-								s = { x: -1, v: 0, tension: null, friction: null },
-								l = [0],
-								d = 0;
-							for (
-								a = parseFloat(a) || 500,
-									n = parseFloat(n) || 20,
-									r = r || null,
-									s.tension = a,
-									s.friction = n,
-									c = (i = null !== r) ? ((d = e(a, n)) / r) * 0.016 : 0.016;
-								(o = t(o || s, c)),
-									l.push(1 + o.x),
-									(d += 16),
-									Math.abs(o.x) > 1e-4 && Math.abs(o.v) > 1e-4;
-
-							);
-							return i
-								? function (e) {
-										return l[(e * (l.length - 1)) | 0];
-								  }
-								: d;
+			var ri = (function () {
+					function e(e) {
+						return -e.tension * e.x - e.friction * e.v;
+					}
+					function a(a, t, n) {
+						var r = {
+							x: a.x + n.dx * t,
+							v: a.v + n.dv * t,
+							tension: a.tension,
+							friction: a.friction,
 						};
-					})(),
+						return { dx: r.v, dv: e(r) };
+					}
+					function t(t, n) {
+						var r = { dx: t.v, dv: e(t) },
+							i = a(t, 0.5 * n, r),
+							c = a(t, 0.5 * n, i),
+							o = a(t, n, c),
+							s = (1 / 6) * (r.dx + 2 * (i.dx + c.dx) + o.dx),
+							l = (1 / 6) * (r.dv + 2 * (i.dv + c.dv) + o.dv);
+						return (t.x = t.x + s * n), (t.v = t.v + l * n), t;
+					}
+					return function e(a, n, r) {
+						var i,
+							c,
+							o,
+							s = { x: -1, v: 0, tension: null, friction: null },
+							l = [0],
+							d = 0;
+						for (
+							a = parseFloat(a) || 500,
+								n = parseFloat(n) || 20,
+								r = r || null,
+								s.tension = a,
+								s.friction = n,
+								c = (i = null !== r) ? ((d = e(a, n)) / r) * 0.016 : 0.016;
+							(o = t(o || s, c)),
+								l.push(1 + o.x),
+								(d += 16),
+								Math.abs(o.x) > 1e-4 && Math.abs(o.v) > 1e-4;
+
+						);
+						return i
+							? function (e) {
+									return l[(e * (l.length - 1)) | 0];
+							  }
+							: d;
+					};
+				})(),
 				ii = function (e, a, t, n) {
 					var r = ni(e, a, t, n);
 					return function (e, a, t) {
@@ -22114,25 +22108,64 @@
 			W = t(126),
 			j = t.n(W),
 			O =
-				'\ncore {\n\tactive-bg-color: #fff;\n\tactive-bg-opacity: 0.333;\n}\n\nedge {\n\tcurve-style: haystack;\n\thaystack-radius: 0;\n\topacity: 0.333;\n\twidth: 2;\n\tz-index: 0;\n\toverlay-opacity: 0;\n  events: no;\n}\n\nnode {\n\twidth: 40;\n\theight: 40;\n\tfont-size: 12;\n\tfont-weight: bold;\n\tmin-zoomed-font-size: 4;\n\tlabel: data(name);\n\ttext-wrap: wrap;\n\ttext-max-width: 50;\n\ttext-valign: center;\n\ttext-halign: center;\n\ttext-events: yes;\n\tcolor: #000;\n\ttext-outline-width: 1;\n\ttext-outline-color: #fff;\n\ttext-outline-opacity: 1;\n\toverlay-color: #fff;\n}\n\nedge[interaction = "cc"] {\n\tline-color: #f7f7f7;\n\topacity: 0.666;\n\tz-index: 9;\n\twidth: 4;\n}\n\nnode[NodeType = "Main"]{\n\tbackground-color: white;\n\ttext-outline-color: white;\n}\n\nnode[NodeType = "Main"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Redr1"]{\n\tbackground-color: #cc0000;\n\ttext-outline-color: #cc0000;\n}\n\nnode[NodeType = "Redr1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Oranger1"]{\n\tbackground-color: #e69138;\n\ttext-outline-color: #e69138;\n}\n\nnode[NodeType = "Oranger1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Yellowr1"]{\n\tbackground-color: #f1c232;\n\ttext-outline-color: #f1c232;\n}\n\nnode[NodeType = "Yellowr1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Greenr1"]{\n\tbackground-color: #6aa84f;\n\ttext-outline-color: #6aa84f;\n}\n\nnode[NodeType = "Greenr1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cyanr1"]{\n\tbackground-color: #45818e;\n\ttext-outline-color: #45818e;\n}\n\nnode[NodeType = "Cyanr1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cbluer1"]{\n\tbackground-color: #3c78d8;\n\ttext-outline-color: #3c78d8;\n}\n\nnode[NodeType = "Cbluer1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Bluer1"]{\n\tbackground-color: #3d85c6;\n\ttext-outline-color: #3d85c6;\n}\n\nnode[NodeType = "Bluer1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Purpler1"]{\n\tbackground-color: #674ea7;\n\ttext-outline-color: #674ea7;\n}\n\nnode[NodeType = "Purpler1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Magenr1"]{\n\tbackground-color: #a64d79;\n\ttext-outline-color: #a64d79;\n}\n\nnode[NodeType = "Magenr1"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Redr2"]{\n\tbackground-color: #ff0000;\n\ttext-outline-color: #ff0000;\n}\n\nnode[NodeType = "Redr2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Oranger2"]{\n\tbackground-color: #ff9900;\n\ttext-outline-color: #ff9900;\n}\n\nnode[NodeType = "Oranger2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Yellowr2"]{\n\tbackground-color: #ffff00;\n\ttext-outline-color: #ffff00;\n}\n\nnode[NodeType = "Yellowr2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Greenr2"]{\n\tbackground-color: #00ff00;\n\ttext-outline-color: #00ff00;\n}\n\nnode[NodeType = "Greenr2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cyanr2"]{\n\tbackground-color: #00ffff;\n\ttext-outline-color: #00ffff;\n}\n\nnode[NodeType = "Cyanr2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cbluer2"]{\n\tbackground-color: #4a86e8;\n\ttext-outline-color: #4a86e8;\n}\n\nnode[NodeType = "Cbluer2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Bluer2"]{\n\tbackground-color: #0000ff;\n\ttext-outline-color: #0000ff;\n}\n\nnode[NodeType = "Bluer2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Purpler2"]{\n\tbackground-color: #9900ff;\n\ttext-outline-color: #9900ff;\n}\n\nnode[NodeType = "Purpler2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Magenr2"]{\n\tbackground-color: #ff00ff;\n\ttext-outline-color: #ff00ff;\n}\n\nnode[NodeType = "Magenr2"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Redr3"]{\n\tbackground-color: #e06666;\n\ttext-outline-color: #e06666;\n}\n\nnode[NodeType = "Redr3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Oranger3"]{\n\tbackground-color: #f6b26b;\n\ttext-outline-color: #f6b26b;\n}\n\nnode[NodeType = "Oranger3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Yellowr3"]{\n\tbackground-color: #ffd966;\n\ttext-outline-color: #ffd966;\n}\n\nnode[NodeType = "Yellowr3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Greenr3"]{\n\tbackground-color: #93c47d;\n\ttext-outline-color: #93c47d;\n}\n\nnode[NodeType = "Greenr3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cyanr3"]{\n\tbackground-color: #76a5af;\n\ttext-outline-color: #76a5af;\n}\n\nnode[NodeType = "Cyanr3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cbluer3"]{\n\tbackground-color: #6d9eeb;\n\ttext-outline-color: #6d9eeb;\n}\n\nnode[NodeType = "Cbluer3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Bluer3"]{\n\tbackground-color: #6fa8dc;\n\ttext-outline-color: #6fa8dc;\n}\n\nnode[NodeType = "Bluer3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Purpler3"]{\n\tbackground-color: #8e7cc3;\n\ttext-outline-color: #8e7cc3;\n}\n\nnode[NodeType = "Purpler3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Magenr3"]{\n\tbackground-color: #c27ba0;\n\ttext-outline-color: #c27ba0;\n}\n\nnode[NodeType = "Magenr3"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Redr4"]{\n\tbackground-color: #ea9999;\n\ttext-outline-color: #ea9999;\n}\n\nnode[NodeType = "Redr4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Oranger4"]{\n\tbackground-color: #f9cb9c;\n\ttext-outline-color: #f9cb9c;\n}\n\nnode[NodeType = "Oranger4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Yellowr4"]{\n\tbackground-color: #ffe599;\n\ttext-outline-color: #ffe599;\n}\n\nnode[NodeType = "Yellowr4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Greenr4"]{\n\tbackground-color: #b6d7a8;\n\ttext-outline-color: #b6d7a8;\n}\n\nnode[NodeType = "Greenr4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cyanr4"]{\n\tbackground-color: #a2c4c9;\n\ttext-outline-color: #a2c4c9;\n}\n\nnode[NodeType = "Cyanr4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cbluer4"]{\n\tbackground-color: #a4c2f4;\n\ttext-outline-color: #a4c2f4;\n}\n\nnode[NodeType = "Cbluer4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Bluer4"]{\n\tbackground-color: #9fc5e8;\n\ttext-outline-color: #9fc5e8;\n}\n\nnode[NodeType = "Bluer4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Purpler4"]{\n\tbackground-color: #b4a7d6;\n\ttext-outline-color: #b4a7d6;\n}\n\nnode[NodeType = "Purpler4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Magenr4"]{\n\tbackground-color: #d5a6bd;\n\ttext-outline-color: #d5a6bd;\n}\n\nnode[NodeType = "Magenr4"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge.highlighted {\n\topacity: 0.8;\n\twidth: 4;\n\tz-index: 9999;\n}\n\n.faded {\n  events: no;\n}\n\nnode.faded {\n  opacity: 0.08;\n}\n\nedge.faded {\n  opacity: 0.06;\n}\n\n.hidden {\n\tdisplay: none;\n}\n\n',
+				'\ncore {\n\tactive-bg-color: #fff;\n\tactive-bg-opacity: 0.333;\n}\n\nedge {\n\tcurve-style: haystack;\n\thaystack-radius: 0;\n\topacity: 0.333;\n\twidth: 2;\n\tz-index: 0;\n\toverlay-opacity: 0;\n  events: no;\n}\n\nnode {\n\twidth: 20;\n\theight: 20;\n\tfont-size: 6;\n\tfont-weight: bold;\n\tmin-zoomed-font-size: 4;\n\tlabel: data(name);\n\ttext-wrap: wrap;\n\ttext-max-width: 50;\n\ttext-valign: center;\n\ttext-halign: center;\n\ttext-events: yes;\n\tcolor: #000;\n\ttext-outline-width: 1;\n\ttext-outline-color: #fff;\n\ttext-outline-opacity: 1;\n\toverlay-color: #fff;\n}\n\nedge[interaction = "cc"] {\n\tline-color: #FFFFFF;\n\topacity: 0.666;\n\tz-index: 9;\n\twidth: 4;\n}\n\nnode[NodeType = "Main"],\nnode[NodeType = "MainType"] {\n\tbackground-color: #FACD37;\n\ttext-outline-color: #FACD37;\n}\n\nnode[NodeType = "Main"],\nnode[NodeType = "MainType"] {\n\tbackground-color: #FFFFFF;\n\ttext-outline-color: #FFFFFF;\n}\n\nnode[NodeType = "Main"][Quality],\nnode[NodeType = "MainType"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Redr1"],\nnode[NodeType = "Redr1Type"] {\n\tbackground-color: #cc0000;\n\ttext-outline-color: #cc0000;\n}\n\nnode[NodeType = "Redr1"][Quality],\nnode[NodeType = "Redr1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Oranger1"],\nnode[NodeType = "Oranger1Type"] {\n\tbackground-color: #e69138F;\n\ttext-outline-color: #e69138F;\n}\n\nnode[NodeType = "Oranger1"][Quality],\nnode[NodeType = "Oranger1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Yellowr1"],\nnode[NodeType = "Yellowr1Type"] {\n\tbackground-color: #f1c232F;\n\ttext-outline-color: #f1c232F;\n}\n\nnode[NodeType = "Yellowr1"][Quality],\nnode[NodeType = "Yellowr1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Greenr1"],\nnode[NodeType = "Greenr1Type"] {\n\tbackground-color: #6aa84f;\n\ttext-outline-color: #6aa84f;\n}\n\nnode[NodeType = "Greenr1"][Quality],\nnode[NodeType = "Greenr1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cyanr1"],\nnode[NodeType = "Cyanr1Type"] {\n\tbackground-color: #45818e;\n\ttext-outline-color: #45818e;\n}\n\nnode[NodeType = "Cyanr1"][Quality],\nnode[NodeType = "Cyanr1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cbluer1"],\nnode[NodeType = "Cbluer1Type"] {\n\tbackground-color: #3c78d8;\n\ttext-outline-color: #3c78d8;\n}\n\nnode[NodeType = "Cbluer1"][Quality],\nnode[NodeType = "Cbluer1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Bluer1"],\nnode[NodeType = "Bluer1Type"] {\n\tbackground-color: #3d85c6;\n\ttext-outline-color: #3d85c6;\n}\n\nnode[NodeType = "Bluer1"][Quality],\nnode[NodeType = "Bluer1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Purpler1"],\nnode[NodeType = "Purpler1Type"] {\n\tbackground-color: #674ea7;\n\ttext-outline-color: #674ea7;\n}\n\nnode[NodeType = "Purpler1"][Quality],\nnode[NodeType = "Purpler1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Magenr1"],\nnode[NodeType = "Magenr1Type"] {\n\tbackground-color: #a64d79;\n\ttext-outline-color: #a64d79;\n}\n\nnode[NodeType = "Magenr1"][Quality],\nnode[NodeType = "Magenr1Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Redr2"],\nnode[NodeType = "Redr2Type"] {\n\tbackground-color: #ff0000;\n\ttext-outline-color: #ff0000;\n}\n\nnode[NodeType = "Redr2"][Quality],\nnode[NodeType = "Redr2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Oranger2"],\nnode[NodeType = "Oranger2Type"] {\n\tbackground-color: #ff9900;\n\ttext-outline-color: #ff9900;\n}\n\nnode[NodeType = "Oranger2"][Quality],\nnode[NodeType = "Oranger2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Yellowr2"],\nnode[NodeType = "Yellowr2Type"] {\n\tbackground-color: #ffff00;\n\ttext-outline-color: #ffff00;\n}\n\nnode[NodeType = "Yellowr2"][Quality],\nnode[NodeType = "Yellowr2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Greenr2"],\nnode[NodeType = "Greenr2Type"] {\n\tbackground-color: #00ff00;\n\ttext-outline-color: #00ff00;\n}\n\nnode[NodeType = "Greenr2"][Quality],\nnode[NodeType = "Greenr2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cyanr2"],\nnode[NodeType = "Cyanr2Type"] {\n\tbackground-color: #00ffff;\n\ttext-outline-color: #00ffff;\n}\n\nnode[NodeType = "Cyanr2"][Quality],\nnode[NodeType = "Cyanr2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cbluer2"],\nnode[NodeType = "Cbluer2Type"] {\n\tbackground-color: #4a86e8;\n\ttext-outline-color: #4a86e8;\n}\n\nnode[NodeType = "Cbluer2"][Quality],\nnode[NodeType = "Cbluer2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Bluer2"],\nnode[NodeType = "Bluer2Type"] {\n\tbackground-color: #0000ff;\n\ttext-outline-color: #0000ff;\n}\n\nnode[NodeType = "Bluer2"][Quality],\nnode[NodeType = "Bluer2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Purpler2"],\nnode[NodeType = "Purpler2Type"] {\n\tbackground-color: #9900ff;\n\ttext-outline-color: #9900ff;\n}\n\nnode[NodeType = "Purpler2"][Quality],\nnode[NodeType = "Purpler2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Magenr2"],\nnode[NodeType = "Magenr2Type"] {\n\tbackground-color: #ff00ff;\n\ttext-outline-color: #ff00ff;\n}\n\nnode[NodeType = "Magenr2"][Quality],\nnode[NodeType = "Magenr2Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Redr3"],\nnode[NodeType = "Redr3Type"] {\n\tbackground-color: #e06666;\n\ttext-outline-color: #e06666;\n}\n\nnode[NodeType = "Redr3"][Quality],\nnode[NodeType = "Redr3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Oranger3"],\nnode[NodeType = "Oranger3Type"] {\n\tbackground-color: #f6b26b;\n\ttext-outline-color: #f6b26b;\n}\n\nnode[NodeType = "Oranger3"][Quality],\nnode[NodeType = "Oranger3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Yellowr3"],\nnode[NodeType = "Yellowr3Type"] {\n\tbackground-color: #ffd966;\n\ttext-outline-color: #ffd966;\n}\n\nnode[NodeType = "Yellowr3"][Quality],\nnode[NodeType = "Yellowr3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Greenr3"],\nnode[NodeType = "Greenr3Type"] {\n\tbackground-color: #93c47d;\n\ttext-outline-color: #93c47d;\n}\n\nnode[NodeType = "Greenr3"][Quality],\nnode[NodeType = "Greenr3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cyanr3"],\nnode[NodeType = "Cyanr3Type"] {\n\tbackground-color: #76a5af;\n\ttext-outline-color: #76a5af;\n}\n\nnode[NodeType = "Cyanr3"][Quality],\nnode[NodeType = "Cyanr3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cbluer3"],\nnode[NodeType = "Cbluer3Type"] {\n\tbackground-color: #6d9eeb;\n\ttext-outline-color: #6d9eeb;\n}\n\nnode[NodeType = "Cbluer3"][Quality],\nnode[NodeType = "Cbluer3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Bluer3"],\nnode[NodeType = "Bluer3Type"] {\n\tbackground-color: #6fa8dc;\n\ttext-outline-color: #6fa8dc;\n}\n\nnode[NodeType = "Bluer3"][Quality],\nnode[NodeType = "Bluer3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Purpler3"],\nnode[NodeType = "Purpler3Type"] {\n\tbackground-color: #8e7cc3;\n\ttext-outline-color: #8e7cc3;\n}\n\nnode[NodeType = "Purpler3"][Quality],\nnode[NodeType = "Purpler3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Magenr3"],\nnode[NodeType = "Magenr3Type"] {\n\tbackground-color: #c27ba0;\n\ttext-outline-color: #c27ba0;\n}\n\nnode[NodeType = "Magenr3"][Quality],\nnode[NodeType = "Magenr3Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Redr4"],\nnode[NodeType = "Redr4Type"] {\n\tbackground-color: #ea9999;\n\ttext-outline-color: #ea9999;\n}\n\nnode[NodeType = "Redr4"][Quality],\nnode[NodeType = "Redr4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Oranger4"],\nnode[NodeType = "Oranger4Type"] {\n\tbackground-color: #f9cb9c;\n\ttext-outline-color: #f9cb9c;\n}\n\nnode[NodeType = "Oranger4"][Quality],\nnode[NodeType = "Oranger4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Yellowr4"],\nnode[NodeType = "Yellowr4Type"] {\n\tbackground-color: #ffe599;\n\ttext-outline-color: #ffe599;\n}\n\nnode[NodeType = "Yellowr4"][Quality],\nnode[NodeType = "Yellowr4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Greenr4"],\nnode[NodeType = "Greenr4Type"] {\n\tbackground-color: #b6d7a8;\n\ttext-outline-color: #b6d7a8;\n}\n\nnode[NodeType = "Greenr4"][Quality],\nnode[NodeType = "Greenr4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cyanr4"],\nnode[NodeType = "Cyanr4Type"] {\n\tbackground-color: #a2c4c9;\n\ttext-outline-color: #a2c4c9;\n}\n\nnode[NodeType = "Cyanr4"][Quality],\nnode[NodeType = "Cyanr4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Cbluer4"],\nnode[NodeType = "Cbluer4Type"] {\n\tbackground-color: #a4c2f4;\n\ttext-outline-color: #a4c2f4;\n}\n\nnode[NodeType = "Cbluer4"][Quality],\nnode[NodeType = "Cbluer4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Bluer4"],\nnode[NodeType = "Bluer4Type"] {\n\tbackground-color: #9fc5e8;\n\ttext-outline-color: #9fc5e8;\n}\n\nnode[NodeType = "Bluer4"][Quality],\nnode[NodeType = "Bluer4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Purpler4"],\nnode[NodeType = "Purpler4Type"] {\n\tbackground-color: #b4a7d6;\n\ttext-outline-color: #b4a7d6;\n}\n\nnode[NodeType = "Purpler4"][Quality],\nnode[NodeType = "Purpler4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nnode[NodeType = "Magenr4"],\nnode[NodeType = "Magenr4Type"] {\n\tbackground-color: #d5a6bd;\n\ttext-outline-color: #d5a6bd;\n}\n\nnode[NodeType = "Magenr4"][Quality],\nnode[NodeType = "Magenr4Type"][Quality] {\n\twidth: mapData(Quality, 70, 100, 20, 50);\n\theight: mapData(Quality, 70, 100, 20, 50);\n}\n\nedge[interaction = "cw"] {\n\tline-color: white;\n}\n\nedge[interaction = "cr"] {\n\tline-color: #DE3128;\n}\n\nnode.highlighted {\n\tmin-zoomed-font-size: 0;\n  z-index: 9999;\n}\n\nedge.highlighted {\n\topacity: 0.8;\n\twidth: 4;\n\tz-index: 9999;\n}\n\n.faded {\n  events: no;\n}\n\nnode.faded {\n  opacity: 0.08;\n}\n\nedge.faded {\n  opacity: 0.06;\n}\n\n.hidden {\n\tdisplay: none;\n}\n\n',
+			/**
+			 * Red, Orange, Yellow, Green, Cyan, Cblue, Blue, Purple, Magen
+			 */
 			H = {
 				nodes: [
 					{
 						data: {
-							id: "2",
+							id: "5",
 							Strength: 1,
 							selected: !1,
-							cytoscape_alias_list: ["JavaScript"],
-							canonicalName: "JavaScript",
-							Quality: 100,
-							SUID: 2,
+							cytoscape_alias_list: ["발표 원칙"],
+							canonicalName: "발표 원칙",
+							Quality: 11,
+							SUID: 5,
 							NodeType: "Redr1",
-							name: "JavaScript",
-							url: "https://google.com",
-							Maintopic1: "Programming",
-							shared_name: "JavaScript",
+							name: "발표 원칙",
+							url: "https://whimsical.com/PyVvBRccuobfnEmD2KHvte",
+							Maintopic1: "Conversation",
+							shared_name: "발표 원칙",
 						},
-						position: { x: 100, y: 100 },
+						position: { x: 1043, y: -1323 },
+						selected: !1,
+					},
+					{
+						data: {
+							id: "3",
+							Strength: 1,
+							selected: !1,
+							cytoscape_alias_list: ["대화 원칙"],
+							canonicalName: "대화 원칙",
+							Quality: 11,
+							SUID: 3,
+							NodeType: "Redr1",
+							name: "대화 원칙",
+							url: "https://whimsical.com/7pn5GLYfhkH5uU6NJJoRJm",
+							Maintopic1: "Conversation",
+							shared_name: "대화 원칙",
+						},
+						position: { x: 1143, y: -1223 },
+						selected: !1,
+					},
+					{
+						data: {
+							id: "2",
+							Strength: 2,
+							selected: !1,
+							cytoscape_alias_list: ["대화"],
+							canonicalName: "대화",
+							Quality: 22,
+							SUID: 2,
+							NodeType: "Main",
+							name: "대화",
+							url: "https://www.notion.so/violet-note/932399c82ba84aa99b0422e6ff0af271?pvs=4",
+							Maintopic1: "Conversation",
+							shared_name: "대화",
+						},
+						position: { x: 1003, y: -1021 },
 						selected: !1,
 					},
 					{
@@ -22140,34 +22173,49 @@
 							id: "1",
 							Strength: 1,
 							selected: !1,
-							cytoscape_alias_list: ["HTML"],
-							canonicalName: "HTML",
-							Quality: 100,
+							cytoscape_alias_list: ["Coding"],
+							canonicalName: "Coding",
+							Quality: 11,
 							SUID: 1,
 							NodeType: "Main",
-							name: "HTML",
-							url: "https://www.notion.so/violet-note/cytoscape-455b15dc7bf34624b1ec8b5184c776df?pvs=4",
+							name: "Coding",
+							url: "https://www.notion.so/violet-note/1d48fbffd33f4404837cb051a124cb7d?v=037797c5ed464895bf94f95711c51527&pvs=4",
 							Maintopic1: "Programming",
-							Maintopic2: "hacking",
-							shared_name: "HTML",
+							Maintopic2: "Hacking",
+							shared_name: "Coding",
 						},
-						position: { x: 0, y: 0 },
+						position: { x: 3, y: 7 },
 						selected: !1,
 					},
 				],
 				edges: [
 					{
 						data: {
-							id: "3",
-							source: "1",
-							target: "2",
+							id: "4",
+							source: "2",
+							target: "3",
 							selected: !1,
-							canonicalName: "HTML (cc) j",
-							SUID: 1763,
-							name: "HTML (cc) j",
+							SUID: 4,
+							canonicalName: "대화 (cc) 대화 원칙",
+							name: "대화 (cc) 대화 원칙",
 							interaction: "cc",
 							shared_interaction: "cc",
-							shared_name: "HTML (cc) j",
+							shared_name: "대화 (cc) 대화 원칙",
+						},
+						selected: !1,
+					},
+					{
+						data: {
+							id: "6",
+							source: "2",
+							target: "5",
+							selected: !1,
+							SUID: 6,
+							canonicalName: "대화 (cc) 발표 원칙",
+							name: "대화 (cc) 발표 원칙",
+							interaction: "cc",
+							shared_interaction: "cc",
+							shared_name: "대화 (cc) 발표 원칙",
 						},
 						selected: !1,
 					},
@@ -22857,7 +22905,7 @@
 		var n;
 		/**
 		 * !  Copyright (c) 2017 Jed Watson. Licensed under the MIT License (MIT), seehttp://jedwatson.github.io/classnames
-		*/
+		 */
 		!(function () {
 			"use strict";
 			var t = {}.hasOwnProperty;
